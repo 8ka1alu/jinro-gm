@@ -39,7 +39,7 @@ class MyBot(commands.Bot):
         p="人狼参加者"
         count=0
         for i in ky:
-            i=str(i)
+            i=int(i)
             if i == p:
                 count+=1
         if count==0:
