@@ -6,8 +6,7 @@ prefix=os.environ['DISCORD_BOT_PREFIX']
 tokun=os.environ['DISCORD_BOT_TOKEN']
 
 # 読み込むコグの名前を格納しておく。
-INITIAL_EXTENSIONS = 
-[
+INITIAL_EXTENSIONS = [
     'cogs.test1'
 ]
 
