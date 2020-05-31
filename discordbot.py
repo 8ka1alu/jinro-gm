@@ -1,6 +1,8 @@
 from discord.ext import commands # Bot Commands Frameworkをインポート
 import os
 import traceback # エラー表示のためにインポート
+import r
+import discord
 
 prefix=os.environ['DISCORD_BOT_PREFIX']
 tokun=os.environ['DISCORD_BOT_TOKEN']
@@ -32,7 +34,23 @@ class MyBot(commands.Bot):
         print(self.user.name)
         print(self.user.id)
         print('-----')
-
+        conn=r.connect()
+        ky=conn.keys()
+        p="人狼参加者"
+        count=0
+        for i in ky:
+            i=str(i)
+            if i == p:
+                count+=1
+        if count==0:
+            ps=conn.sadd(p,"0")
+            if p==True:
+                print("正常起動")
+            else:
+                print("異常発生")
+        else:
+            print(ky)
+        
 
 # MyBotのインスタンス化及び起動処理。
 if __name__ == '__main__':
