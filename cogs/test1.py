@@ -15,6 +15,9 @@ class jinro(commands.Cog):
     async def _add(self, ctx):
         conn=r.connect()
         rp=conn.smembers("人狼参加者")
+        rp2=[j for j in rp]
+        if "0" not in rp2:
+            return await ctx.send("既にゲームが始まっています")
         pc=0
         for rpp in rp:
             rpp=int(rpp)
@@ -33,6 +36,9 @@ class jinro(commands.Cog):
     async def _remove(self, ctx):
         conn=r.connect()
         rp=conn.smembers("人狼参加者")
+        rp2=[j for j in rp]
+        if "0" not in rp2:
+            return await ctx.send("既にゲームが始まっています")
         pc=0
         for rpp in rp:
             rpp=int(rpp)
