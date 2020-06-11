@@ -1,6 +1,7 @@
 import os
 import r
 from discord.ext import commands
+import discord
 import random
 
 class jgame(commands.Cog):
