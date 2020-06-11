@@ -37,6 +37,7 @@ class jgame(commands.Cog):
     async def logout(self, ctx):
         """再起動"""
         await ctx.send('再起動します')
+        await self.change_presence(status=discord.Status.dnd,activity=discord.Game(name=f'再起動'))
         conn=r.connect()
         d=conn.smembers("人狼参加者")
         dd=[j for j in d]
