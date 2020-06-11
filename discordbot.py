@@ -52,6 +52,7 @@ class MyBot(commands.Bot):
                 print("異常発生")
         else:
             print(ky)
+        await self.change_presence(status=discord.Status.idle,activity=discord.Game(name=f'人狼げーむ')) 
         
 
 # MyBotのインスタンス化及び起動処理。
