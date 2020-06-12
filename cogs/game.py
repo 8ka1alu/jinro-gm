@@ -48,7 +48,7 @@ class jgame(commands.Cog):
         conn=r.connect()
         kk=conn.smembers("開発管理者")
         k=[l for l in kk]
-        if ctx.author.id not in k:
+        if ctx.author.id not in int(k):
             return await ctx.send("使用できません")
         d=conn.smembers("人狼参加者")
         dd=[j for j in d]
