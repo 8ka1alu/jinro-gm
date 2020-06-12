@@ -15,7 +15,9 @@ class jgame(commands.Cog):
         conn=r.connect()
         kk=conn.smembers("開発管理者")
         k=[l for l in kk]
-        if ctx.author.id not in k:
+        cai=ctx.author.id
+        cai=str(cai)
+        if cai not in k:
             return await ctx.send("使用できません")
         d=conn.smembers("人狼参加者")
         dd=[j for j in d]
@@ -38,10 +40,9 @@ class jgame(commands.Cog):
             return await ctx.send("使用できません")
         await ctx.send('再起動します')
         await self.bot.change_presence(status=discord.Status.dnd,activity=discord.Game(name=f'再起動'))
-        d=conn.smembers("人狼参加者")
-        dd=[j for j in d]
-        if "0" not in dd:
-            p=conn.sadd("人狼参加者","0")
+        d=conn.delete("人狼参加者")
+        await asyncio.sleep(5)
+        p=conn.sadd("人狼参加者","0")
         await self.bot.logout()
 
     @commands.command()
@@ -59,6 +60,8 @@ class jgame(commands.Cog):
         if "0" not in dd:
             await ctx.send('現在使用できません')
         else:
+            if len(d)==1:
+                return await ctx.send("参加者が足りません")
             pp=conn.srem("人狼参加者","0")
             await ctx.send("ゲームを開始します")
 
