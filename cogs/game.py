@@ -10,21 +10,13 @@ class jgame(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def start(self, ctx):
-        """開始"""
-        conn=r.connect()
-        d=conn.smembers("人狼参加者")
-        dd=[j for j in d]
-        if "0" not in dd:
-            await ctx.send('現在使用できません')
-        else:
-            pp=conn.srem("人狼参加者","0")
-
-
-    @commands.command()
     async def end(self, ctx):
         """強制終了"""
         conn=r.connect()
+        kk=conn.smembers("開発管理者")
+        k=[l for l in kk]
+        if ctx.author.id not in k:
+            return await ctx.send("使用できません")
         d=conn.smembers("人狼参加者")
         dd=[j for j in d]
         if "0" not in dd:
@@ -37,14 +29,34 @@ class jgame(commands.Cog):
     @commands.command()
     async def logout(self, ctx):
         """再起動"""
+        conn=r.connect()
+        kk=conn.smembers("開発管理者")
+        k=[l for l in kk]
+        if ctx.author.id not in k:
+            return await ctx.send("使用できません")
         await ctx.send('再起動します')
         await self.bot.change_presence(status=discord.Status.dnd,activity=discord.Game(name=f'再起動'))
-        conn=r.connect()
         d=conn.smembers("人狼参加者")
         dd=[j for j in d]
         if "0" not in dd:
             p=conn.sadd("人狼参加者","0")
         await self.bot.logout()
+
+    @commands.command()
+    async def start(self, ctx):
+        """開始"""
+        conn=r.connect()
+        kk=conn.smembers("開発管理者")
+        k=[l for l in kk]
+        if ctx.author.id not in k:
+            return await ctx.send("使用できません")
+        d=conn.smembers("人狼参加者")
+        dd=[j for j in d]
+        if "0" not in dd:
+            await ctx.send('現在使用できません')
+        else:
+            pp=conn.srem("人狼参加者","0")
+
 
 def setup(bot):
     bot.add_cog(jgame(bot))
