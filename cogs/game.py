@@ -32,7 +32,9 @@ class jgame(commands.Cog):
         conn=r.connect()
         kk=conn.smembers("開発管理者")
         k=[l for l in kk]
-        if ctx.author.id not in k:
+        cai=ctx.author.id
+        cai=str(cai)
+        if cai not in k:
             return await ctx.send("使用できません")
         await ctx.send('再起動します')
         await self.bot.change_presence(status=discord.Status.dnd,activity=discord.Game(name=f'再起動'))
@@ -48,7 +50,9 @@ class jgame(commands.Cog):
         conn=r.connect()
         kk=conn.smembers("開発管理者")
         k=[l for l in kk]
-        if ctx.author.id not in int(k):
+        cai=ctx.author.id
+        cai=str(cai)
+        if cai not in k:
             return await ctx.send("使用できません")
         d=conn.smembers("人狼参加者")
         dd=[j for j in d]
@@ -56,6 +60,7 @@ class jgame(commands.Cog):
             await ctx.send('現在使用できません')
         else:
             pp=conn.srem("人狼参加者","0")
+            await ctx.send("ゲームを開始します")
 
 
 def setup(bot):
