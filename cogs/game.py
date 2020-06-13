@@ -70,11 +70,11 @@ class jgame(commands.Cog):
             await ctx.send("0日目\n役職がDMに配布されます")
             roles=conn.smembers("人狼役職")
             sroles=[j for j in roles]
-            for r in sroles:
+            for ro in sroles:
                 user=random.choice(dd)
                 up=self.bot.get_user(user)
-                await up.send(f"貴方は{r}です")
-                sroles.remove(r)
+                await up.send(f"貴方は{ro}です")
+                sroles.remove(ro)
 
 def setup(bot):
     bot.add_cog(jgame(bot))
