@@ -64,9 +64,17 @@ class jgame(commands.Cog):
             if len(d)<1:
                 return await ctx.send("参加者が足りません")
             pp=conn.srem("人狼参加者","0")
+            dd.remove("0")
             await ctx.send("ゲームを開始します")
             await asyncio.sleep(0.5)
             await ctx.send("0日目\n役職がDMに配布されます")
+            roles=conn.smembers("人狼役職")
+            sroles=[j for j in roles]
+            for r in sroles:
+                user=random.choice(dd)
+                up=self.bot.get_user(user)
+                await up.send(f"貴方は{r}です")
+                sroles.remove(r)
 
 def setup(bot):
     bot.add_cog(jgame(bot))
