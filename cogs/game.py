@@ -61,11 +61,12 @@ class jgame(commands.Cog):
         if "0" not in dd:
             await ctx.send('現在使用できません')
         else:
-            if len(d)==1:
+            if len(d)<1:
                 return await ctx.send("参加者が足りません")
             pp=conn.srem("人狼参加者","0")
             await ctx.send("ゲームを開始します")
-
+            await asyncio.sleep(0.5)
+            await ctx.send("0日目\n役職がDMに配布されます")
 
 def setup(bot):
     bot.add_cog(jgame(bot))
