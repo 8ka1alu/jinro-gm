@@ -72,7 +72,7 @@ class jgame(commands.Cog):
             sroles=[j for j in roles]
             for ro in sroles:
                 user=random.choice(dd)
-                up=self.bot.get_user(user)
+                up=self.bot.get_user(int(user))
                 await up.send(f"貴方は{ro}です")
                 sroles.remove(ro)
 
