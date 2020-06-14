@@ -24,6 +24,11 @@ class jgame(commands.Cog):
         dd=[j for j in d]
         if "0" not in dd:
             await ctx.send("強制終了します")
+            ky=conn.keys()
+            kys=[j for j in ky]
+            for b in kys:
+                if b in dd:
+                    du=conn.delete(b)
             pp=conn.sadd("人狼参加者","0")
             await ctx.send(pp)
         else:
@@ -41,6 +46,13 @@ class jgame(commands.Cog):
             return await ctx.send("使用できません")
         await ctx.send('再起動します')
         await self.bot.change_presence(status=discord.Status.dnd,activity=discord.Game(name=f'再起動'))
+        ky=conn.keys()
+        js=conn.smembers("人狼参加者")
+        jss=[f for f in js]
+        kys=[j for j in ky]
+        for b in kys:
+            if b in jss:
+                du=conn.delete(b)
         d=conn.delete("人狼参加者")
         await asyncio.sleep(5)
         p=conn.sadd("人狼参加者","0")
@@ -76,6 +88,7 @@ class jgame(commands.Cog):
                 user=random.choice(dd)
                 up=self.bot.get_user(int(user))
                 await up.send(f"貴方は{ro}です")
+                p=conn.set(user,ro)
                 sroles.remove(ro)
 
 def setup(bot):
