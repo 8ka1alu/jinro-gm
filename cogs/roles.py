@@ -80,6 +80,57 @@ class jrole(commands.Cog):
                 else:
                     embed=discord.Embed(title="役職変更失敗",description="`変更に失敗しました`")
                     await ctx.send(embed=embed)
-             
+            
+    @role.group()
+    async def temple(self, ctx):
+        conn=r.connect()
+        kk=conn.smembers("開発管理者")
+        k=[l for l in kk]
+        cai=ctx.author.id
+        cai=str(cai)
+        if cai not in k:
+            return await ctx.send("使用できません")
+        if ctx.invoked_subcommand is None:
+            p=conn.smembers("人狼役職")
+            await ctx.send(p)
+
+    @temple.command()
+    async def add(self, ctx, what=None):
+        conn=r.connect()
+        kk=conn.smembers("開発管理者")
+        k=[l for l in kk]
+        cai=ctx.author.id
+        cai=str(cai)
+        if cai not in k:
+            return await ctx.send("使用できません")
+        if what==None:
+            return await ctx.send("役職を指定して下さい")
+        p=conn.sadd("人狼役職",what)
+        if p ==True:
+            embed=discord.Embed(title="役職導入成功",description=f"`{what}`")
+            await ctx.send(embed=embed)
+        else:
+            embed=discord.Embed(title="役職導入失敗",description="`変更に失敗しました`")
+            await ctx.send(embed=embed)
+
+    @temple.command()
+    async def del(self, ctx, what=None):
+        conn=r.connect()
+        kk=conn.smembers("開発管理者")
+        k=[l for l in kk]
+        cai=ctx.author.id
+        cai=str(cai)
+        if cai not in k:
+            return await ctx.send("使用できません")
+        if what==None:
+            return await ctx.send("役職を指定して下さい")
+        p=conn.srem("人狼役職",what)
+        if p ==True:
+            embed=discord.Embed(title="役職削除成功",description=f"`{what}`")
+            await ctx.send(embed=embed)
+        else:
+            embed=discord.Embed(title="役職削除失敗",description="`変更に失敗しました`")
+            await ctx.send(embed=embed)
+
 def setup(bot):
     bot.add_cog(jrole(bot))
