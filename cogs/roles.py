@@ -63,7 +63,18 @@ class jrole(commands.Cog):
         if what==None:
             return await ctx.send("役職を指定して下さい")
         if what=="all":
-            return
+            fl=[]
+            rk=conn.smembers("人狼役職")
+            kr=[l for l in rk]
+            for i in kr:
+                pp=conn.set(i,"0")
+                if pp==False:
+                    fl.apped(i)
+            embed=discord.Embed(title="全ての役職のリセットが完了しました\n--------------------",description="以下失敗した物")
+            m=1
+            for f in fl:
+                embed.add_field(name=f'**No.{m}**',value=f'`{f}`')
+            await ctx.send(embed=embed)
         else:
             rk=conn.smembers("人狼役職")
             kr=[l for l in rk]
