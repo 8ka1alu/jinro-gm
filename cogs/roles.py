@@ -32,6 +32,12 @@ class jrole(commands.Cog):
         cai=str(cai)
         if cai not in k:
             return await ctx.send("使用できません")
+        rk=conn.smembers("人狼役職")
+        kr=[l for l in rk]
+        cai=what
+        cai=str(cai)
+        if cai not in kr:
+            return await ctx.send("その役職はありません")
         if what==None:
             return await ctx.send("役職を指定して下さい")
         if whats==None:
@@ -58,6 +64,22 @@ class jrole(commands.Cog):
             return await ctx.send("役職を指定して下さい")
         if what=="all":
             return
-
+        else:
+            rk=conn.smembers("人狼役職")
+            kr=[l for l in rk]
+            cai=what
+            cai=str(cai)
+            if cai not in kr:
+                return await ctx.send("その役職はありません")
+            else:
+                pp=conn.set(what,'0')
+                if pp==True:
+                    embed=discord.Embed(title="役職変更成功",description=None)
+                    embed.add_field(name=f'**{what}**',value=f'`0`')
+                    await ctx.send(embed=embed)
+                else:
+                    embed=discord.Embed(title="役職変更失敗",description="`変更に失敗しました`")
+                    await ctx.send(embed=embed)
+             
 def setup(bot):
     bot.add_cog(jrole(bot))
