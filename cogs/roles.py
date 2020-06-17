@@ -114,7 +114,7 @@ class jrole(commands.Cog):
             await ctx.send(embed=embed)
 
     @temple.command()
-    async def del(self, ctx, what=None):
+    async def delete(self, ctx, what=None):
         conn=r.connect()
         kk=conn.smembers("開発管理者")
         k=[l for l in kk]
