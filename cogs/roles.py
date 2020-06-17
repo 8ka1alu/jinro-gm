@@ -95,7 +95,7 @@ class jrole(commands.Cog):
             await ctx.send(p)
 
     @temple.command()
-    async def add(self, ctx, what=None):
+    async def add(self, ctx, whats=None):
         conn=r.connect()
         kk=conn.smembers("開発管理者")
         k=[l for l in kk]
@@ -103,11 +103,11 @@ class jrole(commands.Cog):
         cai=str(cai)
         if cai not in k:
             return await ctx.send("使用できません")
-        if what==None:
+        if whats==None:
             return await ctx.send("役職を指定して下さい")
-        p=conn.sadd("人狼役職",what)
+        p=conn.sadd("人狼役職",whats)
         if p ==True:
-            embed=discord.Embed(title="役職導入成功",description=f"`{what}`")
+            embed=discord.Embed(title="役職導入成功",description=f"`{whats}`")
             await ctx.send(embed=embed)
         else:
             embed=discord.Embed(title="役職導入失敗",description="`変更に失敗しました`")
