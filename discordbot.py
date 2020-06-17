@@ -11,7 +11,8 @@ tokun=os.environ['DISCORD_BOT_TOKEN']
 INITIAL_EXTENSIONS = [
     'cogs.stay',
     'cogs.eval',
-    'cogs.game'
+    'cogs.game',
+    'cogs.roles'
 ]
 
 # クラスの定義。ClientのサブクラスであるBotクラスを継承。
