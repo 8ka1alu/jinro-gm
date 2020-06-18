@@ -53,5 +53,25 @@ class jinro(commands.Cog):
         else:
             await ctx.send("参加していません")
 
+    @commands.command(name='参加者確認')
+    async def _player(self, ctx):
+        """確認"""
+        conn=r.connect()
+        kk=conn.smembers("開発管理者")
+        k=[l for l in kk]
+        cai=ctx.author.id
+        cai=str(cai)
+        if cai not in k:
+            return await ctx.send("使用できません")
+        pp=conn.smembers("人狼参加者")
+        p=[j for j in pp]
+        p.remove("0")
+        m=1
+        embed=discord.Embed(title="参加者一覧",description=None)
+        for i in p:
+            player=self.bot.get_user(int(i))
+            embed.add_field(name=f'**{m}人目**',value=f'`{player}`')
+        await ctx.send(embed=embed)
+
 def setup(bot):
     bot.add_cog(jinro(bot))
