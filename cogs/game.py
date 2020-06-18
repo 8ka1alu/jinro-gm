@@ -78,7 +78,7 @@ class jgame(commands.Cog):
             m=1
             for i in rpp:
                 dp=conn.get(i)
-                m+=dp
+                m+=int(dp)
             if len(d)!=m:
                 return await ctx.send("参加者もしくは役職が足りません")
             pp=conn.srem("人狼参加者","0")
@@ -89,12 +89,13 @@ class jgame(commands.Cog):
             for ro in rpp:
                 qe=conn.get(ro)
                 m=0
-                while m<qe:
+                while m<int(qe):
                     user=random.choice(dd)
                     up=self.bot.get_user(int(user))
                     await up.send(f"貴方は{ro}です")
                     p=conn.set(user,ro)
                     dd.remove(up)
+                    m+=1
 
 def setup(bot):
     bot.add_cog(jgame(bot))
