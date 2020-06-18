@@ -92,7 +92,7 @@ class jgame(commands.Cog):
                 while m<int(qe):
                     user=random.choice(dd)
                     up=self.bot.get_user(int(user))
-                    await up.send(f"貴方は{ro}です")
+                    await up.send(f"貴方は__**{ro}**__です")
                     p=conn.set(user,ro)
                     dd.remove(up)
                     m+=1
