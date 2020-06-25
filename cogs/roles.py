@@ -103,6 +103,7 @@ class jrole(commands.Cog):
             return await ctx.send("使用できません")
         if ctx.invoked_subcommand is None:
             p=conn.smembers("人狼役職")
+            p=[j for j in p]
             await ctx.send(p)
 
     @temple.command()
