@@ -104,7 +104,9 @@ class jrole(commands.Cog):
         if ctx.invoked_subcommand is None:
             p=conn.smembers("人狼役職")
             p=[j for j in p]
-            await ctx.send(p)
+            p='・'.join(p)
+            embed=discord.Embed(title="現在設定可能役職",description=p)
+            await ctx.send(embed=embed)
 
     @temple.command()
     async def add(self, ctx, whats=None):
