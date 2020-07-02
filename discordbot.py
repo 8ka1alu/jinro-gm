@@ -14,7 +14,7 @@ INITIAL_EXTENSIONS = [
     'cogs.game',
     'cogs.roles',
     'cogs.role_fortune',
-    'cogs.role_knighr',
+    'cogs.role_knight',
     'cogs.role_meduim',
     'cogs.role_werewolf'
 ]
