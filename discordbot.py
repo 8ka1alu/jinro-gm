@@ -12,7 +12,11 @@ INITIAL_EXTENSIONS = [
     'cogs.stay',
     'cogs.eval',
     'cogs.game',
-    'cogs.roles'
+    'cogs.roles',
+    'cogs.role_fortune',
+    'cogs.role_knighr',
+    'cogs.role_meduim',
+    'cogs.role_werewolf'
 ]
 
 # クラスの定義。ClientのサブクラスであるBotクラスを継承。
