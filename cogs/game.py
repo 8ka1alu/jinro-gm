@@ -98,7 +98,7 @@ class jgame(commands.Cog):
                     m+=1
 
     @commands.command()
-    async def say(self, ctx, *, msg:str):
+    async def say(self, ctx, *, msg:int):
         await ctx.send(msg)
         await ctx.send(len(msg))
 
