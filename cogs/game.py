@@ -97,5 +97,10 @@ class jgame(commands.Cog):
                     dd.remove(up)
                     m+=1
 
+    @commands.command()
+    async def say(self, ctx, *, msg:str):
+        await ctx.send(msg)
+        await ctx.send(len(msg))
+
 def setup(bot):
     bot.add_cog(jgame(bot))
